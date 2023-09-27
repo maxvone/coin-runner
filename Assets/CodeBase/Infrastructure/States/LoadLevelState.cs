@@ -16,6 +16,8 @@ namespace CodeBase.Infrastructure.States
         public void Enter()
         {
             _gameFactory.CreatePlayer();
+            
+            _gameStateMachine.Enter<GameLoopState>();
         }
         
         public void Exit()
