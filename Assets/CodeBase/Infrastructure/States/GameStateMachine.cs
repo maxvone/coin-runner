@@ -17,7 +17,7 @@ namespace CodeBase.Infrastructure.States
       _states = new Dictionary<Type, IExitableState>
       {
         [typeof(BootstrapState)] = new BootstrapState(this, _services),
-        [typeof(LoadLevelState)] = new LoadLevelState(this, _services.Single<IGameFactory>()),
+        [typeof(LoadLevelState)] = new LoadLevelState(this, _services.Single<IGameFactory>(), _services.Single<IStaticDataService>()),
         [typeof(GameLoopState)] = new GameLoopState(this),
       };
     }

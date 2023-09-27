@@ -1,3 +1,4 @@
+using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories
@@ -6,6 +7,6 @@ namespace CodeBase.Services.Factories
     {
         void CreatePlayer();
         void CreateMovementArea();
-        GameObject SpawnPickupable();
+        GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId);
     }
 }

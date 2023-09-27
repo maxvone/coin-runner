@@ -1,6 +1,9 @@
+using CodeBase.Logic.Spawners;
 using CodeBase.Services;
 using CodeBase.Services.Factories;
+using CodeBase.StaticData.Levels;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -8,30 +11,36 @@ namespace CodeBase.Infrastructure.States
     {
         private readonly GameStateMachine _gameStateMachine;
         private readonly IGameFactory _gameFactory;
+        private readonly IStaticDataService _staticDataService;
 
-        public LoadLevelState(GameStateMachine gameStateMachine, IGameFactory gameFactory)
+        public LoadLevelState(GameStateMachine gameStateMachine, IGameFactory gameFactory,
+            IStaticDataService staticDataService)
         {
             _gameStateMachine = gameStateMachine;
             _gameFactory = gameFactory;
+            _staticDataService = staticDataService;
         }
 
         public void Enter()
         {
-            _gameFactory.CreatePlayer();
-            _gameFactory.CreateMovementArea();
-            SpawnPickupables();
+            InitGameWorld();
             
             _gameStateMachine.Enter<GameLoopState>();
         }
 
-        private void SpawnPickupables()
+        private void InitGameWorld()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                GameObject pickupable = _gameFactory.SpawnPickupable();
-                int randomX = Random.Range(-5, 5);
-                pickupable.transform.position += new Vector3(randomX, 0, i * 15);
-            } 
+            LevelStaticData levelData = _staticDataService.ForLevel(SceneManager.GetActiveScene().name);
+            _gameFactory.CreatePlayer();
+            _gameFactory.CreateMovementArea();
+            SpawnPickupables(levelData);
+        }
+
+        private void SpawnPickupables(LevelStaticData levelData)
+        {
+            _staticDataService.ForLevel(levelData.LevelKey);
+            foreach (var spawnMarker in levelData.PickupablesSpawners)
+                _gameFactory.SpawnPickupable(at: spawnMarker.Position, spawnMarker.TypeId);
         }
 
         public void Exit()

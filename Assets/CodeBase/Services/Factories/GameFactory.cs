@@ -1,5 +1,8 @@
-﻿using CodeBase.Player;
+﻿using CodeBase.Pickupables.Coins;
+using CodeBase.Pickupables.Effects;
+using CodeBase.Player;
 using CodeBase.Services.Input;
+using CodeBase.StaticData;
 using UnityEngine;
 
 namespace CodeBase.Services.Factories
@@ -31,10 +34,25 @@ namespace CodeBase.Services.Factories
             _movementAreaDataHandler.MovementAreaMove = MovementArea.GetComponent<MovementAreaMove>();
         }
 
-        public GameObject SpawnPickupable()
+        public GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId)
         {
             GameObject instance = SpawnObject("Pickupable");
+            instance.transform.position = at;
             instance.transform.SetParent(MovementArea.transform);
+            
+            Pickupable pickupable = instance.GetComponent<Pickupable>();
+
+            switch (spawnMarkerTypeId)
+            {
+                case PickupableTypeId.BoosterCoin:
+                    pickupable.EffectStrategy = new BoostSpeedEffect();
+                    break;
+                case PickupableTypeId.SlowDownCoin:
+                    pickupable.EffectStrategy = new SlowDownSpeedEffect();
+                    break;
+                case PickupableTypeId.FlyCoin:
+                    break;
+            }
 
             return instance;
         }

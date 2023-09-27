@@ -13,10 +13,10 @@ namespace CodeBase.Infrastructure.States
         {
             _gameStateMachine = gameStateMachine;
             _services = services;
-            
+
             RegisterServices();
         }
-        
+
         public void Enter()
         {
             _gameStateMachine.Enter<LoadLevelState>();
@@ -26,11 +26,20 @@ namespace CodeBase.Infrastructure.States
         {
             _services.RegisterSingle<IInputService>(new InputService());
             _services.RegisterSingle<IMovementAreaDataHandler>(new MovementAreaDataHandler());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>(), 
+            RegisterStaticDataService();
+            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>(),
                 _services.Single<IMovementAreaDataHandler>()));
-            
         }
 
-        public void Exit() {}
+        private void RegisterStaticDataService()
+        {
+            IStaticDataService staticData = new StaticDataService();
+            staticData.Load();
+            _services.RegisterSingle(staticData);
+        }
+
+        public void Exit()
+        {
+        }
     }
 }
