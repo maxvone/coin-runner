@@ -1,4 +1,5 @@
 using CodeBase.Services;
+using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Pickupables.Effects
 {
@@ -6,10 +7,14 @@ namespace CodeBase.Pickupables.Effects
     {
         private IPlayerDataHandlerService _playerDataHandlerService;
 
-        public void Execute()
+        public async void Execute()
         {
             _playerDataHandlerService = AllServices.Container.Single<IPlayerDataHandlerService>();
             _playerDataHandlerService.PlayerAnimation.PlayFly();
+            
+            await UniTask.Delay(10000);
+            
+            _playerDataHandlerService.PlayerAnimation.ReturnToMove();
         }
     }
 }
