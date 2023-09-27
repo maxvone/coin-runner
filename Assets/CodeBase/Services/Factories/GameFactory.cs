@@ -6,6 +6,7 @@ namespace CodeBase.Services.Factories
 {
     public class GameFactory : IGameFactory
     {
+        public GameObject MovementArea { get; private set; }
         private readonly IInputService _inputService;
 
         public GameFactory(IInputService inputService)
@@ -15,12 +16,32 @@ namespace CodeBase.Services.Factories
 
         public void CreatePlayer()
         {
-            var playerPrefab = Resources.Load<GameObject>("Player");
-            GameObject playerInstance = Object.Instantiate(playerPrefab);
-            
-            PlayerMove playerMove = playerInstance.GetComponent<PlayerMove>();
+            var instance = SpawnObject("Player");
+
+            PlayerMove playerMove = instance.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
             playerMove.MovementSpeed = 2;
+        }
+
+        public void CreateMovementArea()
+        {
+            MovementArea = SpawnObject("MovementArea");
+        }
+
+        public GameObject SpawnPickupable()
+        {
+            GameObject instance = SpawnObject("Pickupable");
+            instance.transform.SetParent(MovementArea.transform);
+
+            return instance;
+        }
+
+        public GameObject SpawnObject(string path)
+        {
+            var prefab = Resources.Load<GameObject>(path);
+            GameObject instance = Object.Instantiate(prefab);
+
+            return instance;
         }
     }
 }
