@@ -1,14 +1,16 @@
-using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.States;
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "BootstrapInstaller", menuName = "Installers/BootstrapInstaller")]
-public class BootstrapInstaller : ScriptableObjectInstaller<BootstrapInstaller>
+namespace CodeBase.Infrastructure.Installers
 {
-    public override void InstallBindings()
+    [CreateAssetMenu(fileName = "BootstrapInstaller", menuName = "Installers/BootstrapInstaller")]
+    public class BootstrapInstaller : ScriptableObjectInstaller<BootstrapInstaller>
     {
-        Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle().NonLazy();
-        Container.Bind<GameBootstrap>().AsSingle().NonLazy();
+        public override void InstallBindings()
+        {
+            Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle().NonLazy();
+            Container.Bind<GameBootstrap>().AsSingle().NonLazy();
+        }
     }
 }
