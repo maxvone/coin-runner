@@ -1,21 +1,18 @@
 ﻿using CodeBase.Infrastructure.States;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
-    public class GameBootstrap
+    public class GameBootstrap : MonoBehaviour
     {
-        private readonly IGameStateMachine _gameStateMachine;
+        private Game _game;
 
-        public GameBootstrap(IGameStateMachine gameStateMachine)
+        private void Awake()
         {
-            _gameStateMachine = gameStateMachine;
+            _game = new Game();
+            _game.StateMachine.Enter<BootstrapState>();
 
-            StartGame();
-        }
-
-        private void StartGame()
-        {
-            _gameStateMachine.Enter<BootstrapState>();
+            DontDestroyOnLoad(this);
         }
     }
 }

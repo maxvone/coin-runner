@@ -1,21 +1,25 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Services;
+using Zenject;
 
 namespace CodeBase.Infrastructure.States
 {
   public class GameStateMachine : IGameStateMachine
   {
+    private readonly AllServices _services;
     private Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
 
-    public GameStateMachine()
+    public GameStateMachine(AllServices services)
     {
+      _services = services;
       _states = new Dictionary<Type, IExitableState>
       {
-        [typeof(BootstrapState)] = new BootstrapState(this),
+        [typeof(BootstrapState)] = new BootstrapState(this, services),
       };
     }
-    
+
     public void Enter<TState>() where TState : class, IState
     {
       IState state = ChangeState<TState>();
