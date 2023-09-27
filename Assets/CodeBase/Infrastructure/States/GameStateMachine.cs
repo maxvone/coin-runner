@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Services;
-using Zenject;
 
 namespace CodeBase.Infrastructure.States
 {

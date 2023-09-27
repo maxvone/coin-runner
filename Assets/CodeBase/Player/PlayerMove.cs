@@ -1,6 +1,5 @@
 using CodeBase.Services.Input;
 using UnityEngine;
-using Zenject;
 
 namespace CodeBase.Player
 {
@@ -11,12 +10,6 @@ namespace CodeBase.Player
 
         private IInputService _inputService;
         private Camera _camera;
-
-        [Inject]
-        public void Construct(InputService inputService)
-        {
-            _inputService = inputService;
-        }
 
         private void Start() =>
             _camera = Camera.main;
