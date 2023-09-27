@@ -25,7 +25,10 @@ namespace CodeBase.Infrastructure.States
         private void RegisterServices()
         {
             _services.RegisterSingle<IInputService>(new InputService());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>()));
+            _services.RegisterSingle<IMovementAreaDataHandler>(new MovementAreaDataHandler());
+            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>(), 
+                _services.Single<IMovementAreaDataHandler>()));
+            
         }
 
         public void Exit() {}

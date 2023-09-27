@@ -8,10 +8,12 @@ namespace CodeBase.Services.Factories
     {
         public GameObject MovementArea { get; private set; }
         private readonly IInputService _inputService;
+        private readonly IMovementAreaDataHandler _movementAreaDataHandler;
 
-        public GameFactory(IInputService inputService)
+        public GameFactory(IInputService inputService, IMovementAreaDataHandler movementAreaDataHandler)
         {
             _inputService = inputService;
+            _movementAreaDataHandler = movementAreaDataHandler;
         }
 
         public void CreatePlayer()
@@ -26,6 +28,7 @@ namespace CodeBase.Services.Factories
         public void CreateMovementArea()
         {
             MovementArea = SpawnObject("MovementArea");
+            _movementAreaDataHandler.MovementAreaMove = MovementArea.GetComponent<MovementAreaMove>();
         }
 
         public GameObject SpawnPickupable()

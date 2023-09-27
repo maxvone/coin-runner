@@ -5,7 +5,7 @@ namespace CodeBase.Pickupables.Coins
 {
     public class Pickupable : MonoBehaviour
     {
-        public IEffectStrategy EffectStrategy { get; set; }
+        public IEffectStrategy EffectStrategy { get; set; } = new BoostSpeedEffect();
 
         private bool _pickedUp; 
 
