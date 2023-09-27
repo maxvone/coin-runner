@@ -13,19 +13,19 @@ namespace CodeBase.Infrastructure.States
         {
             _gameStateMachine = gameStateMachine;
             _services = services;
+            
+            RegisterServices();
         }
         
         public void Enter()
         {
-            RegisterServices();
+            _gameStateMachine.Enter<LoadLevelState>();
         }
 
         private void RegisterServices()
         {
             _services.RegisterSingle<IInputService>(new InputService());
-            _services.RegisterSingle<IGameFactory>(new GameFactory());
-
-            IInputService inputService = _services.Single<IInputService>();
+            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>()));
         }
 
         public void Exit() {}

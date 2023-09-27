@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Services;
+using CodeBase.Services.Factories;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -15,7 +16,8 @@ namespace CodeBase.Infrastructure.States
       _services = services;
       _states = new Dictionary<Type, IExitableState>
       {
-        [typeof(BootstrapState)] = new BootstrapState(this, services),
+        [typeof(BootstrapState)] = new BootstrapState(this, _services),
+        [typeof(LoadLevelState)] = new LoadLevelState(this, _services.Single<IGameFactory>()),
       };
     }
 
