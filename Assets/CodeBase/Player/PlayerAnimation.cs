@@ -23,8 +23,8 @@ namespace CodeBase.Player
             
             Transform animatorTransform = _animator.transform;
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(animatorTransform.DOMove(new Vector3(0, 0.2f, 0), 0.5f));
-            sequence.Join(animatorTransform.DORotate(new Vector3(70, 0, 0), 0.5f));
+            sequence.Append(animatorTransform.DOLocalMove(new Vector3(0, 0.2f, 0), 0.5f));
+            sequence.Join(animatorTransform.DOLocalRotate(new Vector3(70, 0, 0), 0.5f));
             
         }
     }
