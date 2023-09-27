@@ -9,7 +9,7 @@ namespace CodeBase.Services.Input
 
         public Vector2 Axis => SimpleInputAxis();
 
-        protected static Vector2 SimpleInputAxis() => 
-            new Vector2(SimpleInput.GetAxis(Horizontal), SimpleInput.GetAxis(Vertical));
+        protected static Vector2 SimpleInputAxis() =>
+            new Vector2(SimpleInput.GetAxisRaw(Horizontal), SimpleInput.GetAxisRaw(Vertical));
     }
 }

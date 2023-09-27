@@ -20,7 +20,7 @@ namespace CodeBase.Services.Factories
             
             PlayerMove playerMove = playerInstance.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
-            playerMove.MovementSpeed = 10;
+            playerMove.MovementSpeed = 2;
         }
     }
 }
