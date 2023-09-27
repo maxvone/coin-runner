@@ -5,11 +5,11 @@ namespace CodeBase.Pickupables.Effects
 {
     public class SlowDownSpeedEffect : IEffectStrategy
     {
-        private IMovementAreaDataHandler _movementAreaDataHandler;
+        private IMovementAreaDataHandlerService _movementAreaDataHandlerService;
         public void Execute()
         {
-            _movementAreaDataHandler = AllServices.Container.Single<IMovementAreaDataHandler>();
-            _movementAreaDataHandler.MovementAreaMove.Speed /= 2;
+            _movementAreaDataHandlerService = AllServices.Container.Single<IMovementAreaDataHandlerService>();
+            _movementAreaDataHandlerService.MovementAreaMove.Speed /= 2;
         }
     }
 }

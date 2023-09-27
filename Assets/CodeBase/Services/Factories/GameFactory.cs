@@ -11,12 +11,15 @@ namespace CodeBase.Services.Factories
     {
         public GameObject MovementArea { get; private set; }
         private readonly IInputService _inputService;
-        private readonly IMovementAreaDataHandler _movementAreaDataHandler;
+        private readonly IMovementAreaDataHandlerService _movementAreaDataHandlerService;
+        private readonly IPlayerDataHandlerService _playerDataHandlerService;
 
-        public GameFactory(IInputService inputService, IMovementAreaDataHandler movementAreaDataHandler)
+        public GameFactory(IInputService inputService, IMovementAreaDataHandlerService movementAreaDataHandlerService,
+            IPlayerDataHandlerService playerDataHandlerService)
         {
             _inputService = inputService;
-            _movementAreaDataHandler = movementAreaDataHandler;
+            _movementAreaDataHandlerService = movementAreaDataHandlerService;
+            _playerDataHandlerService = playerDataHandlerService;
         }
 
         public void CreatePlayer()
@@ -26,12 +29,14 @@ namespace CodeBase.Services.Factories
             PlayerMove playerMove = instance.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
             playerMove.MovementSpeed = 2;
+
+            _playerDataHandlerService.PlayerAnimation = instance.GetComponent<PlayerAnimation>();
         }
 
         public void CreateMovementArea()
         {
             MovementArea = SpawnObject("MovementArea");
-            _movementAreaDataHandler.MovementAreaMove = MovementArea.GetComponent<MovementAreaMove>();
+            _movementAreaDataHandlerService.MovementAreaMove = MovementArea.GetComponent<MovementAreaMove>();
         }
 
         public GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId)
@@ -51,6 +56,7 @@ namespace CodeBase.Services.Factories
                     pickupable.EffectStrategy = new SlowDownSpeedEffect();
                     break;
                 case PickupableTypeId.FlyCoin:
+                    pickupable.EffectStrategy = new FlyEffect();
                     break;
             }
 

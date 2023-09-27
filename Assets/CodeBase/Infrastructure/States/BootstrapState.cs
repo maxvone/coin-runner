@@ -25,10 +25,12 @@ namespace CodeBase.Infrastructure.States
         private void RegisterServices()
         {
             _services.RegisterSingle<IInputService>(new InputService());
-            _services.RegisterSingle<IMovementAreaDataHandler>(new MovementAreaDataHandler());
+            _services.RegisterSingle<IMovementAreaDataHandlerService>(new MovementAreaDataHandlerServiceService());
+            _services.RegisterSingle<IPlayerDataHandlerService>(new PlayerDataHandlerService());
             RegisterStaticDataService();
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>(),
-                _services.Single<IMovementAreaDataHandler>()));
+                _services.Single<IMovementAreaDataHandlerService>(),
+                _services.Single<IPlayerDataHandlerService>()));
         }
 
         private void RegisterStaticDataService()

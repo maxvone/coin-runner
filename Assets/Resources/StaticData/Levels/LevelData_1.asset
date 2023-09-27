@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: MainScene
   PickupablesSpawners:
+  - Position: {x: 0, y: 0, z: 8.46}
+    TypeId: 2
   - Position: {x: -1.25, y: 0, z: 40.46}
     TypeId: 2
   - Position: {x: 1.5, y: 0, z: 23.46}
     TypeId: 1
-  - Position: {x: 0, y: 0, z: 8.46}
-    TypeId: 0
