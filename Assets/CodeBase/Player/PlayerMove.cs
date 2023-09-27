@@ -36,6 +36,7 @@ namespace CodeBase.Player
             movementVector += Physics.gravity;
 
             _characterController.Move(MovementSpeed * movementVector * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
     }

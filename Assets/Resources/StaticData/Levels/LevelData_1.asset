@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e22c5c33db441f689501a3260e8c8dc, type: 3}
   m_Name: LevelData_1
   m_EditorClassIdentifier: 
-  LevelKey: 
-  PickupablesSpawners: []
+  LevelKey: MainScene
+  PickupablesSpawners:
+  - Position: {x: -1.25, y: 0, z: 40.46}
+    TypeId: 2
+  - Position: {x: 1.5, y: 0, z: 23.46}
+    TypeId: 1
+  - Position: {x: 0, y: 0, z: 8.46}
+    TypeId: 0

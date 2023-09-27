@@ -1,8 +1,5 @@
-using CodeBase.Logic.Spawners;
-using CodeBase.Services;
 using CodeBase.Services.Factories;
 using CodeBase.StaticData.Levels;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.States
