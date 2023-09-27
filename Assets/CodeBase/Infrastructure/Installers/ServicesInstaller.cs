@@ -1,3 +1,4 @@
+using CodeBase.Services.Input;
 using UnityEngine;
 using Zenject;
 
@@ -6,5 +7,6 @@ public class ServicesInstaller : ScriptableObjectInstaller<ServicesInstaller>
 {
     public override void InstallBindings()
     {
+        Container.Bind<IInputService>().To<InputService>().AsSingle();
     }
 }
