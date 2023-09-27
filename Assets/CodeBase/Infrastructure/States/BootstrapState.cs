@@ -1,21 +1,20 @@
-using System;
-using UnityEngine;
-
 namespace CodeBase.Infrastructure.States
 {
     public class BootstrapState : IState
     {
+        private readonly IGameStateMachine _gameStateMachine;
+
         public BootstrapState(IGameStateMachine gameStateMachine)
         {
-            Debug.Log("Boostrap State Entered");
+            _gameStateMachine = gameStateMachine;
         }
 
         public void Enter()
         {
         }
+        
         public void Exit()
         {
-            throw new NotImplementedException();
         }
     }
 }
