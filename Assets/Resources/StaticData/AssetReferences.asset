@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 3}
   MovementAreaPrefab: {fileID: 4336382329928287167, guid: 452ff078043a3b347904cc779409b2c8,
     type: 3}
+  EnvironmentPrefab: {fileID: 7263877942458394412, guid: 3c14cadd820e79f4a9faad466d7b993d,
+    type: 3}

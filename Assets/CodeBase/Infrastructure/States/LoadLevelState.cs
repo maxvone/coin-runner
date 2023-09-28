@@ -37,6 +37,7 @@ namespace CodeBase.Infrastructure.States
             _levelData = _staticDataService.ForLevel(SceneManager.GetActiveScene().name);
             _gameFactory.CreatePlayer();
             _gameFactory.CreateMovementArea();
+            _gameFactory.CreateEnvironment();
             SpawnPickupables();
         }
 

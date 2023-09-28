@@ -76,5 +76,10 @@ namespace CodeBase.Services.Factories
                 };
         }
 
+        public void CreateEnvironment()
+        {
+            GameObject instance = SpawnObject(_assetProvider.AssetReferences.EnvironmentPrefab);
+            instance.transform.SetParent(_movementAreaInstance.transform);
+        }
     }
 }

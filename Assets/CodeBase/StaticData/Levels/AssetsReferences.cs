@@ -11,5 +11,6 @@ namespace CodeBase.StaticData.Levels
         public GameObject PlayerPrefab;
         public GameObject PickupablePrefab;
         public GameObject MovementAreaPrefab;
+        public GameObject EnvironmentPrefab;
     }
 }

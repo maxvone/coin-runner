@@ -8,5 +8,6 @@ namespace CodeBase.Services.Factories
         void CreatePlayer();
         void CreateMovementArea();
         GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId);
+        void CreateEnvironment();
     }
 }
