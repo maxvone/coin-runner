@@ -716,6 +716,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894464832488804732, guid: 130264a903a0c074bafb143494938408,
         type: 3}
+      propertyPath: <Prefab>k__BackingField
+      value: 
+      objectReference: {fileID: 5736954585111833640, guid: f080a10521be6a64ba344332840d3f79,
+        type: 3}
+    - target: {fileID: 894464832488804732, guid: 130264a903a0c074bafb143494938408,
+        type: 3}
       propertyPath: <TypeId>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -1030,6 +1036,12 @@ PrefabInstance:
       propertyPath: TypeId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 894464832488804732, guid: 130264a903a0c074bafb143494938408,
+        type: 3}
+      propertyPath: <Prefab>k__BackingField
+      value: 
+      objectReference: {fileID: 5736954585111833640, guid: 5bf3a83bf47baa04686a271fe23e4c3d,
+        type: 3}
     - target: {fileID: 894464832488804732, guid: 130264a903a0c074bafb143494938408,
         type: 3}
       propertyPath: <TypeId>k__BackingField

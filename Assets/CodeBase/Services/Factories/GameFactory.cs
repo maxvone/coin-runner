@@ -18,16 +18,19 @@ namespace CodeBase.Services.Factories
         private readonly IMovementAreaDataHandlerService _movementAreaDataHandlerService;
         private readonly IPlayerDataHandlerService _playerDataHandlerService;
         private readonly IAssetProvider _assetProvider;
+        private readonly IStaticDataService _staticDataService;
 
         private GameObject _movementAreaInstance; 
 
         public GameFactory(IInputService inputService, IMovementAreaDataHandlerService movementAreaDataHandlerService,
-            IPlayerDataHandlerService playerDataHandlerService, IAssetProvider assetProvider)
+            IPlayerDataHandlerService playerDataHandlerService, IAssetProvider assetProvider,
+            IStaticDataService staticDataService)
         {
             _inputService = inputService;
             _movementAreaDataHandlerService = movementAreaDataHandlerService;
             _playerDataHandlerService = playerDataHandlerService;
             _assetProvider = assetProvider;
+            _staticDataService = staticDataService;
         }
 
         public void CreatePlayer()
@@ -36,7 +39,7 @@ namespace CodeBase.Services.Factories
 
             PlayerMove playerMove = instance.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
-            playerMove.MovementSpeed = 2;
+            playerMove.MovementSpeed = _staticDataService.PlayerStaticData.Speed;
 
             _playerDataHandlerService.PlayerAnimation = instance.GetComponent<PlayerAnimation>();
         }
@@ -51,13 +54,14 @@ namespace CodeBase.Services.Factories
         public void CreateMovementArea()
         {
             _movementAreaInstance = SpawnObject(_assetProvider.AssetReferences.MovementAreaPrefab);
-            
-            _movementAreaDataHandlerService.MovementAreaMove = _movementAreaInstance.GetComponent<MovementAreaMove>();
+            MovementAreaMove movementAreaMove = _movementAreaInstance.GetComponent<MovementAreaMove>();
+            _movementAreaDataHandlerService.MovementAreaMove = movementAreaMove;
+            movementAreaMove.Speed = _staticDataService.MovementAreaStaticData.Speed;
         }
 
-        public GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId)
+        public GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId, GameObject spawnMarkerPrefab)
         {
-            GameObject instance = SpawnObject(_assetProvider.AssetReferences.PickupablePrefab);
+            GameObject instance = SpawnObject(spawnMarkerPrefab);
             instance.transform.position = at;
             instance.transform.SetParent(_movementAreaInstance.transform);
             

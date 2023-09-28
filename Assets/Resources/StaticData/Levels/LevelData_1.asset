@@ -16,7 +16,13 @@ MonoBehaviour:
   PickupablesSpawners:
   - Position: {x: 0, y: 0, z: 19.5}
     TypeId: 0
-  - Position: {x: 0, y: 0, z: 308.90002}
+    Prefab: {fileID: 5736954585111833640, guid: b229cc8ec8df4524696f8e2cadfdbcd7,
+      type: 3}
+  - Position: {x: 0, y: 0, z: 350.40002}
     TypeId: 2
+    Prefab: {fileID: 5736954585111833640, guid: 5bf3a83bf47baa04686a271fe23e4c3d,
+      type: 3}
   - Position: {x: 0, y: 0, z: 301}
     TypeId: 1
+    Prefab: {fileID: 5736954585111833640, guid: f080a10521be6a64ba344332840d3f79,
+      type: 3}

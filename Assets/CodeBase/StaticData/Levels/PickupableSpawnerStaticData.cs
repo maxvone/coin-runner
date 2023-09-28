@@ -11,11 +11,13 @@ namespace CodeBase.StaticData.Levels
     {
         public Vector3 Position;
         public PickupableTypeId TypeId;
+        public GameObject Prefab;
 
-        public PickupableSpawnerStaticData(PickupableTypeId typeId, Vector3 position)
+        public PickupableSpawnerStaticData(PickupableTypeId typeId, Vector3 position, GameObject prefab)
         {
             TypeId = typeId;
             Position = position;
+            Prefab = prefab;
         }
     }
 }

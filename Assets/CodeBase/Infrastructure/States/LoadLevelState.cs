@@ -44,7 +44,7 @@ namespace CodeBase.Infrastructure.States
         private void SpawnPickupables()
         {
             foreach (var spawnMarker in _levelData.PickupablesSpawners)
-                _gameFactory.SpawnPickupable(at: spawnMarker.Position, spawnMarker.TypeId);
+                _gameFactory.SpawnPickupable(at: spawnMarker.Position, spawnMarker.TypeId, spawnMarker.Prefab);
         }
 
         public void Exit()

@@ -6,5 +6,7 @@ namespace CodeBase.Services.Factories
     {
         void Load();
         LevelStaticData ForLevel(string sceneKey);
+        PlayerStaticData PlayerStaticData { get; }
+        MovementAreaStaticData MovementAreaStaticData { get; }
     }
 }

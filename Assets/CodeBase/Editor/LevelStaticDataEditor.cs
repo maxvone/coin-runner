@@ -24,7 +24,7 @@ namespace CodeBase.Editor
             if (GUILayout.Button("Collect"))
             {
                 levelData.PickupablesSpawners = FindObjectsOfType<PickupableSpawnMarker>()
-                    .Select(x => new PickupableSpawnerStaticData(x.TypeId, x.transform.position))
+                    .Select(x => new PickupableSpawnerStaticData(x.TypeId, x.transform.position, x.Prefab))
                     .ToList();
                 levelData.LevelKey = SceneManager.GetActiveScene().name;
             }

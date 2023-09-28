@@ -10,5 +10,6 @@ namespace CodeBase.Logic.Spawners
     public class PickupableSpawnMarker : MonoBehaviour
     {
         [field: SerializeField] public PickupableTypeId TypeId { get; private set; }
+        [field: SerializeField] public GameObject Prefab { get; private set; }
     }
 }

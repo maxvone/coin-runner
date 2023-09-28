@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 7126422293726410871}
   - component: {fileID: 1194949409529548413}
   m_Layer: 0
-  m_Name: Pickupable
+  m_Name: PickupableRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f731a2ae89bef7a47a008811dfbd4680, type: 2}
+  - {fileID: 2100000, guid: eabe9231778a95d4e8c88ccb41374819, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

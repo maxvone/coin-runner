@@ -7,7 +7,7 @@ namespace CodeBase.MovementArea
     /// </summary>
     public class MovementAreaMove : MonoBehaviour
     {
-        public float Speed { get; set; } = 7;
+        public float Speed { get; set; }
 
         private void Update() => 
             transform.position += -transform.forward * Speed * Time.deltaTime;
