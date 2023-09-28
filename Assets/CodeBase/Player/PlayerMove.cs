@@ -21,6 +21,11 @@ namespace CodeBase.Player
 
         private void Update()
         {
+            Move();
+        }
+
+        private void Move()
+        {
             Vector3 movementVector = Vector3.zero;
 
             if (_inputService.Axis.sqrMagnitude > Mathf.Epsilon)
@@ -38,6 +43,5 @@ namespace CodeBase.Player
             _characterController.Move(MovementSpeed * movementVector * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.zero);
         }
-
     }
 }
