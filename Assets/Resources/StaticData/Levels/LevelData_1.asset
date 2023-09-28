@@ -16,7 +16,7 @@ MonoBehaviour:
   PickupablesSpawners:
   - Position: {x: 0, y: 0, z: 19.5}
     TypeId: 0
-  - Position: {x: 0, y: 0, z: 250.4}
+  - Position: {x: 0, y: 0, z: 308.90002}
     TypeId: 2
-  - Position: {x: 0, y: 0, z: 150.5}
+  - Position: {x: 0, y: 0, z: 301}
     TypeId: 1

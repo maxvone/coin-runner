@@ -1,4 +1,6 @@
 using CodeBase.Pickupables.Effects;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace CodeBase.Pickupables.Coins
@@ -9,6 +11,8 @@ namespace CodeBase.Pickupables.Coins
     /// </summary>
     public class Pickupable : MonoBehaviour
     {
+        [SerializeField] private TMP_Text _effectText;
+        [SerializeField] private MeshRenderer _meshRenderer;
         public IEffectStrategy EffectStrategy { get; set; }
 
         private bool _pickedUp; 
@@ -25,8 +29,21 @@ namespace CodeBase.Pickupables.Coins
                 return;
             
             _pickedUp = true;
-            gameObject.SetActive(false);
+            _meshRenderer.enabled = false;
             EffectStrategy.Execute();
+            EnableTextEffect();
+        }
+
+        private void EnableTextEffect()
+        {
+            _effectText.transform.DOLocalMove(Vector3.zero, 0);
+            _effectText.DOColor(new Color(255, 255, 255, 0), 0);
+            _effectText.text = EffectStrategy.Text;
+
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(_effectText.transform.DOLocalMove(new Vector3(0, 1.5f, 0), 0.5f));
+            sequence.Join(_effectText.DOColor(new Color(255, 255, 255, 255), 0.5f));
+            sequence.Append(_effectText.DOColor(new Color(255, 255, 255, 0), 0.2f));
         }
     }
 }

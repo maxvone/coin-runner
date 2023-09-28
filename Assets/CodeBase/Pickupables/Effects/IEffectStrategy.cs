@@ -5,6 +5,7 @@ namespace CodeBase.Pickupables.Effects
     /// </summary>
     public interface IEffectStrategy
     {
+        string Text { get; }
         void Execute();
     }
 }

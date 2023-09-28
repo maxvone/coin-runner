@@ -5,6 +5,8 @@ namespace CodeBase.Pickupables.Effects
 {
     public class FlyEffect : IEffectStrategy
     {
+        public string Text => "↑ Fly";
+        
         private IPlayerDataHandlerService _playerDataHandlerService;
 
         public FlyEffect(IPlayerDataHandlerService playerDataHandlerService) => 
