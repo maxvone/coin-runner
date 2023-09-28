@@ -17,7 +17,7 @@ namespace CodeBase.Pickupables.Coins
 
         private void PickUp()
         {
-            if (_pickedUp || EffectStrategy.IsExecuting)
+            if (_pickedUp)
                 return;
             
             _pickedUp = true;
