@@ -3,12 +3,14 @@ using UnityEngine;
 
 namespace CodeBase.Player
 {
+    /// <summary>
+    /// This class is responsible for handling the player animations
+    /// </summary>
     public class PlayerAnimation : MonoBehaviour
     {
         [SerializeField] private CharacterController _characterController;
         [SerializeField] public Animator _animator;
 
-        private static readonly int RunHash = Animator.StringToHash("Run");
         private static readonly int FlyHash = Animator.StringToHash("Fly");
         private static readonly int ReturnToRunHash = Animator.StringToHash("ReturnToRun");
 

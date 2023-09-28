@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace CodeBase.Player
 {
+    /// <summary>
+    /// This class represents the component of movement for the player
+    /// It uses InputService to get the input from the player and translates it into movement
+    /// </summary>
     public class PlayerMove : MonoBehaviour
     {
         [SerializeField] private CharacterController _characterController;
@@ -11,18 +15,14 @@ namespace CodeBase.Player
         private IInputService _inputService;
         private Camera _camera;
 
-        public void Construct(IInputService inputService)
-        {
+        public void Construct(IInputService inputService) => 
             _inputService = inputService;
-        }
-        
+
         private void Start() =>
             _camera = Camera.main;
 
-        private void Update()
-        {
+        private void Update() => 
             Move();
-        }
 
         private void Move()
         {

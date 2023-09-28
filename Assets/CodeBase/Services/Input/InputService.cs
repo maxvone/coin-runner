@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace CodeBase.Services.Input
 {
+    /// <summary>
+    /// This service is the wrapper around SimpleInput package from asset store
+    /// that simply gives information about pressed axis
+    /// </summary>
     public class InputService : IInputService
     {
         protected const string Horizontal = "Horizontal";

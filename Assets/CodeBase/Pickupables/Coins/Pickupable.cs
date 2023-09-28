@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace CodeBase.Pickupables.Coins
 {
+    /// <summary>
+    /// It's a facade on the pickupable object
+    /// For now it's just controlling picking up the object
+    /// </summary>
     public class Pickupable : MonoBehaviour
     {
         public IEffectStrategy EffectStrategy { get; set; }

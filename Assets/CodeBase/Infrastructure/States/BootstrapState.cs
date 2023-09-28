@@ -4,6 +4,12 @@ using CodeBase.Services.Input;
 
 namespace CodeBase.Infrastructure.States
 {
+    /// <summary>
+    /// The first state of the game
+    /// This state represents DI context in terms of different DI frameworks.
+    /// It's goal to Register Services in the Service Locator.
+    /// And after loading service to transfer game into the next state. 
+    /// </summary>
     public class BootstrapState : IState
     {
         private readonly IGameStateMachine _gameStateMachine;
@@ -17,10 +23,8 @@ namespace CodeBase.Infrastructure.States
             RegisterServices();
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _gameStateMachine.Enter<LoadLevelState>();
-        }
 
         private void RegisterServices()
         {

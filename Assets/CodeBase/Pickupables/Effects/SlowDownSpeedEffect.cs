@@ -1,5 +1,4 @@
 using CodeBase.Services;
-using CodeBase.Services.Factories;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Pickupables.Effects

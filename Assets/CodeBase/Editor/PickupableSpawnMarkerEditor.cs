@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CodeBase.Editor
 {
+    /// <summary>
+    /// Class for visualization of spawn markers on the scene
+    /// </summary>
     [CustomEditor(typeof(PickupableSpawnMarker))]
     public class PickupableSpawnMarkerEditor : UnityEditor.Editor
     {

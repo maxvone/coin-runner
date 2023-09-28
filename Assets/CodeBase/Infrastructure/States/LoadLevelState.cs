@@ -4,6 +4,12 @@ using UnityEngine.SceneManagement;
 
 namespace CodeBase.Infrastructure.States
 {
+    /// <summary>
+    /// This class is responsible for Initializing game world:
+    /// - Creating Player
+    /// - Creating MoveArea that handles moving pickupables
+    /// - Creating Pickupables from Level Static data
+    /// </summary>
     public class LoadLevelState : IState
     {
         private readonly GameStateMachine _gameStateMachine;

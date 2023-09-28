@@ -5,6 +5,10 @@ using CodeBase.Services.Factories;
 
 namespace CodeBase.Infrastructure.States
 {
+  /// <summary>
+  /// Game State Machine is responsible for handling states of the game
+  /// It gives a controllable flow of the game
+  /// </summary>
   public class GameStateMachine : IGameStateMachine
   {
     private readonly AllServices _services;
@@ -26,12 +30,6 @@ namespace CodeBase.Infrastructure.States
     {
       IState state = ChangeState<TState>();
       state.Enter();
-    }
-
-    public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadedState<TPayload>
-    {
-      TState state = ChangeState<TState>();
-      state.Enter(payload);
     }
 
     private TState ChangeState<TState>() where TState : class, IExitableState

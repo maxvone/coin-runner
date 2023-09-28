@@ -1,10 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
+using CodeBase.Services.Factories;
 using CodeBase.StaticData.Levels;
 using UnityEngine;
 
-namespace CodeBase.Services.Factories
+namespace CodeBase.Services
 {
+    /// <summary>
+    /// Service responsible for Loading Level static data such as:
+    /// - Pickupables positions
+    /// Game was oriented for manual level creation. So this the place to keep static data about the level
+    /// </summary>
     public class StaticDataService : IStaticDataService
     {
         private const string LevelsDataPath = "StaticData/Levels";

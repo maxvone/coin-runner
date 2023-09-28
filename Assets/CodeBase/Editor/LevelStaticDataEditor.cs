@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 
 namespace CodeBase.Editor
 {
+    /// <summary>
+    /// This class is responsible for collecting static data from the scene such as:
+    /// - Markers for spawning pickupables
+    /// This static data is used in LoadLevelState to spawn pickupables
+    /// </summary>
     [CustomEditor(typeof(LevelStaticData))]
     public class LevelStaticDataEditor : UnityEditor.Editor
     {

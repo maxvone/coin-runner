@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace CodeBase.StaticData.Levels
 {
+    /// <summary>
+    /// This class contains information about spawn markers on the scene.
+    /// </summary>
     [Serializable]
     public class PickupableSpawnerStaticData
     {

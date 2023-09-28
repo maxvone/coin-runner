@@ -1,4 +1,5 @@
-﻿using CodeBase.Pickupables.Coins;
+﻿using CodeBase.MovementArea;
+using CodeBase.Pickupables.Coins;
 using CodeBase.Pickupables.Effects;
 using CodeBase.Player;
 using CodeBase.Services.Input;
@@ -7,6 +8,10 @@ using UnityEngine;
 
 namespace CodeBase.Services.Factories
 {
+    /// <summary>
+    /// GameFactory is responsible for creating all objects in the world.
+    /// Usually it should be divided into other factories, but in a such small game this one should be enough
+    /// </summary>
     public class GameFactory : IGameFactory
     {
         private readonly IInputService _inputService;
