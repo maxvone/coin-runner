@@ -9,6 +9,7 @@ namespace CodeBase.Infrastructure.States
         private readonly GameStateMachine _gameStateMachine;
         private readonly IGameFactory _gameFactory;
         private readonly IStaticDataService _staticDataService;
+        private LevelStaticData _levelData;
 
         public LoadLevelState(GameStateMachine gameStateMachine, IGameFactory gameFactory,
             IStaticDataService staticDataService)
@@ -27,16 +28,15 @@ namespace CodeBase.Infrastructure.States
 
         private void InitGameWorld()
         {
-            LevelStaticData levelData = _staticDataService.ForLevel(SceneManager.GetActiveScene().name);
+            _levelData = _staticDataService.ForLevel(SceneManager.GetActiveScene().name);
             _gameFactory.CreatePlayer();
             _gameFactory.CreateMovementArea();
-            SpawnPickupables(levelData);
+            SpawnPickupables();
         }
 
-        private void SpawnPickupables(LevelStaticData levelData)
+        private void SpawnPickupables()
         {
-            _staticDataService.ForLevel(levelData.LevelKey);
-            foreach (var spawnMarker in levelData.PickupablesSpawners)
+            foreach (var spawnMarker in _levelData.PickupablesSpawners)
                 _gameFactory.SpawnPickupable(at: spawnMarker.Position, spawnMarker.TypeId);
         }
 

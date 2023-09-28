@@ -7,11 +7,13 @@ namespace CodeBase.Pickupables.Effects
     {
         private IPlayerDataHandlerService _playerDataHandlerService;
 
+        public FlyEffect(IPlayerDataHandlerService playerDataHandlerService) => 
+            _playerDataHandlerService = playerDataHandlerService;
 
         public async void Execute()
         {
-            _playerDataHandlerService = AllServices.Container.Single<IPlayerDataHandlerService>();
             _playerDataHandlerService.PlayerAnimation.PlayFly();
+            
             await UniTask.Delay(10000);
             
             _playerDataHandlerService.PlayerAnimation.ReturnToMove();

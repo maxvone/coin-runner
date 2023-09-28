@@ -5,13 +5,13 @@ namespace CodeBase.Pickupables.Coins
 {
     public class Pickupable : MonoBehaviour
     {
-        public IEffectStrategy EffectStrategy { get; set; } = new BoostSpeedEffect();
+        public IEffectStrategy EffectStrategy { get; set; }
 
         private bool _pickedUp; 
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_pickedUp) 
+            if (!_pickedUp && EffectStrategy != null) 
                 PickUp();
         }
 

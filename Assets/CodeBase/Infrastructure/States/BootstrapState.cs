@@ -29,7 +29,7 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle<IPlayerDataHandlerService>(new PlayerDataHandlerService());
             RegisterStaticDataService();
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>(),
-                _services.Single<IMovementAreaDataHandlerService>(),
+                _services.Single<IMovementAreaDataHandlerService>(), 
                 _services.Single<IPlayerDataHandlerService>()));
         }
 
@@ -40,8 +40,6 @@ namespace CodeBase.Infrastructure.States
             _services.RegisterSingle(staticData);
         }
 
-        public void Exit()
-        {
-        }
+        public void Exit(){}
     }
 }

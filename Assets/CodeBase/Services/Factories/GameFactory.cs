@@ -9,10 +9,11 @@ namespace CodeBase.Services.Factories
 {
     public class GameFactory : IGameFactory
     {
-        public GameObject MovementArea { get; private set; }
         private readonly IInputService _inputService;
         private readonly IMovementAreaDataHandlerService _movementAreaDataHandlerService;
         private readonly IPlayerDataHandlerService _playerDataHandlerService;
+        
+        private GameObject _movementAreaInstance; 
 
         public GameFactory(IInputService inputService, IMovementAreaDataHandlerService movementAreaDataHandlerService,
             IPlayerDataHandlerService playerDataHandlerService)
@@ -35,28 +36,28 @@ namespace CodeBase.Services.Factories
 
         public void CreateMovementArea()
         {
-            MovementArea = SpawnObject("MovementArea");
-            _movementAreaDataHandlerService.MovementAreaMove = MovementArea.GetComponent<MovementAreaMove>();
+            _movementAreaInstance = SpawnObject("MovementArea");
+            _movementAreaDataHandlerService.MovementAreaMove = _movementAreaInstance.GetComponent<MovementAreaMove>();
         }
 
         public GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId)
         {
             GameObject instance = SpawnObject("Pickupable");
             instance.transform.position = at;
-            instance.transform.SetParent(MovementArea.transform);
+            instance.transform.SetParent(_movementAreaInstance.transform);
             
             Pickupable pickupable = instance.GetComponent<Pickupable>();
 
             switch (spawnMarkerTypeId)
             {
                 case PickupableTypeId.BoosterCoin:
-                    pickupable.EffectStrategy = new BoostSpeedEffect();
+                    pickupable.EffectStrategy = new BoostSpeedEffect(_movementAreaDataHandlerService);
                     break;
                 case PickupableTypeId.SlowDownCoin:
-                    pickupable.EffectStrategy = new SlowDownSpeedEffect();
+                    pickupable.EffectStrategy = new SlowDownSpeedEffect(_movementAreaDataHandlerService);
                     break;
                 case PickupableTypeId.FlyCoin:
-                    pickupable.EffectStrategy = new FlyEffect();
+                    pickupable.EffectStrategy = new FlyEffect(_playerDataHandlerService);
                     break;
             }
 
