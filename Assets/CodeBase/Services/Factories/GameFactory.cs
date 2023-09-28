@@ -58,20 +58,17 @@ namespace CodeBase.Services.Factories
             
             Pickupable pickupable = instance.GetComponent<Pickupable>();
 
-            switch (spawnMarkerTypeId)
-            {
-                case PickupableTypeId.BoosterCoin:
-                    pickupable.EffectStrategy = new BoostSpeedEffect(_movementAreaDataHandlerService);
-                    break;
-                case PickupableTypeId.SlowDownCoin:
-                    pickupable.EffectStrategy = new SlowDownSpeedEffect(_movementAreaDataHandlerService);
-                    break;
-                case PickupableTypeId.FlyCoin:
-                    pickupable.EffectStrategy = new FlyEffect(_playerDataHandlerService);
-                    break;
-            }
+            ApplyEffects();
 
             return instance;
+
+            void ApplyEffects() =>
+                pickupable.EffectStrategy = spawnMarkerTypeId switch
+                {
+                    PickupableTypeId.BoosterCoin => new BoostSpeedEffect(_movementAreaDataHandlerService),
+                    PickupableTypeId.SlowDownCoin => new SlowDownSpeedEffect(_movementAreaDataHandlerService),
+                    PickupableTypeId.FlyCoin => new FlyEffect(_playerDataHandlerService)
+                };
         }
 
     }

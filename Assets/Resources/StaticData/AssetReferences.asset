@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 3}
   PickupablePrefab: {fileID: 5736954585111833640, guid: b229cc8ec8df4524696f8e2cadfdbcd7,
     type: 3}
+  MovementAreaPrefab: {fileID: 4336382329928287167, guid: 452ff078043a3b347904cc779409b2c8,
+    type: 3}
