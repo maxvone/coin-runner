@@ -30,7 +30,8 @@ namespace CodeBase.Infrastructure.States
             RegisterStaticDataService();
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IInputService>(),
                 _services.Single<IMovementAreaDataHandlerService>(), 
-                _services.Single<IPlayerDataHandlerService>()));
+                _services.Single<IPlayerDataHandlerService>(),
+                _services.Single<IAssetProvider>()));
         }
 
         private void RegisterStaticDataService()
@@ -38,6 +39,8 @@ namespace CodeBase.Infrastructure.States
             IStaticDataService staticData = new StaticDataService();
             staticData.Load();
             _services.RegisterSingle(staticData);
+
+            _services.RegisterSingle<IAssetProvider>(new AssetProvider());
         }
 
         public void Exit(){}

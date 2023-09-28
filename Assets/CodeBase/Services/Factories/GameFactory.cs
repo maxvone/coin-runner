@@ -12,20 +12,22 @@ namespace CodeBase.Services.Factories
         private readonly IInputService _inputService;
         private readonly IMovementAreaDataHandlerService _movementAreaDataHandlerService;
         private readonly IPlayerDataHandlerService _playerDataHandlerService;
-        
+        private readonly IAssetProvider _assetProvider;
+
         private GameObject _movementAreaInstance; 
 
         public GameFactory(IInputService inputService, IMovementAreaDataHandlerService movementAreaDataHandlerService,
-            IPlayerDataHandlerService playerDataHandlerService)
+            IPlayerDataHandlerService playerDataHandlerService, IAssetProvider assetProvider)
         {
             _inputService = inputService;
             _movementAreaDataHandlerService = movementAreaDataHandlerService;
             _playerDataHandlerService = playerDataHandlerService;
+            _assetProvider = assetProvider;
         }
 
         public void CreatePlayer()
         {
-            var instance = SpawnObject("Player");
+            var instance = SpawnObject(_assetProvider.AssetReferences.PlayerPrefab);
 
             PlayerMove playerMove = instance.GetComponent<PlayerMove>();
             playerMove.Construct(_inputService);
@@ -34,15 +36,23 @@ namespace CodeBase.Services.Factories
             _playerDataHandlerService.PlayerAnimation = instance.GetComponent<PlayerAnimation>();
         }
 
+        private GameObject SpawnObject(GameObject prefab)
+        {
+            GameObject instance = Object.Instantiate(prefab);
+
+            return instance;
+        }
+
         public void CreateMovementArea()
         {
-            _movementAreaInstance = SpawnObject("MovementArea");
+            _movementAreaInstance = SpawnObject(_assetProvider.AssetReferences.MovementAreaPrefab);
+            
             _movementAreaDataHandlerService.MovementAreaMove = _movementAreaInstance.GetComponent<MovementAreaMove>();
         }
 
         public GameObject SpawnPickupable(Vector3 at, PickupableTypeId spawnMarkerTypeId)
         {
-            GameObject instance = SpawnObject("Pickupable");
+            GameObject instance = SpawnObject(_assetProvider.AssetReferences.PickupablePrefab);
             instance.transform.position = at;
             instance.transform.SetParent(_movementAreaInstance.transform);
             
@@ -64,12 +74,5 @@ namespace CodeBase.Services.Factories
             return instance;
         }
 
-        public GameObject SpawnObject(string path)
-        {
-            var prefab = Resources.Load<GameObject>(path);
-            GameObject instance = Object.Instantiate(prefab);
-
-            return instance;
-        }
     }
 }

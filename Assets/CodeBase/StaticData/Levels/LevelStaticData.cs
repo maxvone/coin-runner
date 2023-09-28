@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Logic.Spawners;
 using UnityEngine;
 
 namespace CodeBase.StaticData.Levels
