@@ -1,4 +1,5 @@
 # Coin Runner
+Sorry, I dont have enough space in my Git LFS so here is the link to the build: https://drive.google.com/file/d/1yb0OU5SLbmD1sqrpcRIHZvQJz-CWKneq/view?usp=sharing
 
 ### Used Packages
 - DOTween
